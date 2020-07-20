@@ -1,8 +1,6 @@
 # Curation
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/curation`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+When you build content curation tools, you need to extract the content of pages (title, text, image...). This requires different strategies and some fine tuning to work efficiently.
 
 ## Installation
 
@@ -22,7 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+page = Curation::Page.new url
+article = Article.new
+article.title = page.title
+article.text = page.text
+article.image = page.image
+article.save
+```
 
 ## Development
 
