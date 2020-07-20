@@ -1,0 +1,58 @@
+PATH
+  remote: .
+  specs:
+    curation (0.1.0)
+      metainspector
+      nokogiri
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    faraday (1.0.1)
+      multipart-post (>= 1.2, < 3)
+    faraday-cookie_jar (0.0.6)
+      faraday (>= 0.7.4)
+      http-cookie (~> 1.0.0)
+    faraday-encoding (0.0.5)
+      faraday
+    faraday-http-cache (2.2.0)
+      faraday (>= 0.8)
+    faraday_middleware (1.0.0)
+      faraday (~> 1.0)
+    fastimage (2.1.7)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    metainspector (5.10.1)
+      addressable (~> 2.7.0)
+      faraday (~> 1.0.0)
+      faraday-cookie_jar (~> 0.0.6)
+      faraday-encoding (~> 0.0.5)
+      faraday-http-cache (~> 2.2.0)
+      faraday_middleware (~> 1.0.0)
+      fastimage (~> 2.1.7)
+      nesty (~> 1.0.2)
+      nokogiri (~> 1.10.9)
+    mini_portile2 (2.4.0)
+    multipart-post (2.1.1)
+    nesty (1.0.2)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
+    public_suffix (4.0.5)
+    rake (12.3.3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  curation!
+  rake (~> 12.0)
+
+BUNDLED WITH
+   2.1.4
