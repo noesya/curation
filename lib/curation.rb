@@ -1,4 +1,6 @@
 require "curation/version"
+require "metainspector"
+require "open-uri"
 
 module Curation
   class Error < StandardError; end
@@ -32,7 +34,7 @@ module Curation
 
     def image
       @image = find_image
-      @image = @image.gsub('http://', 'https://')
+      @image = @image.to_s.gsub('http://', 'https://')
       @image
     end
 
@@ -44,7 +46,6 @@ module Curation
           return ld['articleBody'] if ld.has_key? 'articleBody'
         end
       end
-      text = ''
       h = html.dup
       BLACKLIST.each do |tag|
         h.css(tag).remove
@@ -96,7 +97,6 @@ module Curation
     end
 
     def data
-      require 'open-uri'
       URI.open url
     rescue
       puts "Impossible to open #{url}"
