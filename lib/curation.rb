@@ -19,8 +19,9 @@ module Curation
       '[style*="display: none;"]', '[style*="display: none"]', '[aria-hidden="true"]'
     ]
 
-    def initialize(url)
+    def initialize(url, html = nil)
       @url = url
+      @html = html
     end
 
     def title
@@ -29,7 +30,8 @@ module Curation
           return ld['headline'] if ld.has_key? 'headline'
         end
       end
-      metainspector.best_title
+      metainspector.best_title unless metainspector.best_title.blank?
+      metainspector.title
     end
 
     def image
@@ -46,7 +48,7 @@ module Curation
           return ld['articleBody'] if ld.has_key? 'articleBody'
         end
       end
-      h = html.dup
+      h = nokogiri.dup
       BLACKLIST.each do |tag|
         h.css(tag).remove
       end
@@ -73,17 +75,11 @@ module Curation
       metainspector.images.best
     end
 
-    def html
-      @html ||= Nokogiri::HTML data
-    rescue
-      puts "Nokogiri error"
-    end
-
     def json_ld
       unless @json_ld
         @json_ld = []
         begin
-          options = html.css('[type="application/ld+json"]')
+          options = nokogiri.css('[type="application/ld+json"]')
           options.each do |option|
             string = option.inner_text
             hash = JSON.parse(string)
@@ -96,14 +92,20 @@ module Curation
       @json_ld
     end
 
-    def data
-      URI.open url
+    def html
+      @html ||= URI.open url
     rescue
       puts "Impossible to open #{url}"
     end
 
+    def nokogiri
+      @nokogiri ||= Nokogiri::HTML html
+    rescue
+      puts "Nokogiri error"
+    end
+
     def metainspector
-      @metainspector ||= MetaInspector.new url
+      @metainspector ||= MetaInspector.new url, document: html
     rescue
       puts "MetaInspector error"
     end
