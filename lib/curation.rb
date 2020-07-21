@@ -25,13 +25,7 @@ module Curation
     end
 
     def title
-      if json_ld.any?
-        json_ld.each do |ld|
-          return ld['headline'] if ld.has_key? 'headline'
-        end
-      end
-      metainspector.best_title unless metainspector.best_title.blank?
-      metainspector.title
+      @title = find_title
     end
 
     def image
@@ -61,18 +55,45 @@ module Curation
 
     protected
 
+    def find_title
+      if json_ld.any?
+        json_ld.each do |ld|
+          return ld['headline'] if ld.has_key? 'headline'
+        end
+      end
+      [
+        metainspector.best_title,
+        metainspector.title,
+        nokogiri.css('[itemprop="headline"]').first.inner_text,
+        nokogiri.css('title').first.inner_text
+      ].each do |possibility|
+        return possibility unless possibility.blank?
+      end
+      return ''
+    end
+
     def find_image
       if json_ld.any?
         json_ld.each do |ld|
           if ld.has_key? 'image'
             image_data = ld['image']
             return image_data if image_data.is_a? String
-            return image_data.first if image_data.is_a? Array
+            if image_data.is_a? Array
+              first = image_data.first
+              return first if first.is_a? String
+              return first['url'] if first.is_a? Hash
+            end
             return image_data['url'] if image_data.is_a? Hash
           end
         end
       end
-      metainspector.images.best
+      [
+        metainspector.images.best,
+        nokogiri.css('[property="og:image"]').first&.attributes["content"].value
+      ].each do |possibility|
+        return possibility unless possibility.blank?
+      end
+      return ''
     end
 
     def json_ld
