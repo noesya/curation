@@ -64,8 +64,8 @@ module Curation
       [
         metainspector.best_title,
         metainspector.title,
-        nokogiri.css('[itemprop="headline"]').first.inner_text,
-        nokogiri.css('title').first.inner_text
+        nokogiri.css('[itemprop="headline"]')&.first&.inner_text,
+        nokogiri.css('title')&.first&.inner_text
       ].each do |possibility|
         return possibility unless possibility.blank?
       end
