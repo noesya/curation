@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    curation (1.5)
+    curation (1.6)
       metainspector
       nokogiri
 

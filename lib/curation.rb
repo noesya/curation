@@ -57,6 +57,8 @@ module Curation
 
     def find_title
       if json_ld.any?
+        # Some sites have tables in tables
+        json_ld.flatten!
         json_ld.each do |ld|
           return ld['headline'] if ld.has_key? 'headline'
         end
