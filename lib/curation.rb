@@ -61,13 +61,17 @@ module Curation
           return ld['headline'] if ld.has_key? 'headline'
         end
       end
-      [
-        metainspector.best_title,
-        metainspector.title,
-        nokogiri.css('[itemprop="headline"]')&.first&.inner_text,
-        nokogiri.css('title')&.first&.inner_text
-      ].each do |possibility|
-        return possibility unless possibility.blank?
+      begin
+        [
+          metainspector.best_title,
+          metainspector.title,
+          nokogiri.css('[itemprop="headline"]')&.first&.inner_text,
+          nokogiri.css('title')&.first&.inner_text
+        ].each do |possibility|
+          return possibility unless possibility.blank?
+        end
+      rescue
+        puts 'Curation::Page find_title error'
       end
       return ''
     end
@@ -87,11 +91,15 @@ module Curation
           end
         end
       end
-      [
-        metainspector.images.best,
-        nokogiri.css('[property="og:image"]').first&.attributes["content"].value
-      ].each do |possibility|
-        return possibility unless possibility.blank?
+      begin
+        [
+          metainspector.images.best,
+          nokogiri.css('[property="og:image"]').first&.attributes['content'].value
+        ].each do |possibility|
+            return possibility unless possibility.blank?
+        end
+      rescue
+        puts 'Curation::Page find_image error'
       end
       return ''
     end
@@ -107,7 +115,7 @@ module Curation
             @json_ld << hash
           end
         rescue
-          puts "JSON LD error"
+          puts 'Curation::Page json_ld error'
         end
       end
       @json_ld
@@ -122,13 +130,13 @@ module Curation
     def nokogiri
       @nokogiri ||= Nokogiri::HTML html
     rescue
-      puts "Nokogiri error"
+      puts 'Curation::Page nokogiri error'
     end
 
     def metainspector
       @metainspector ||= MetaInspector.new url, document: html
     rescue
-      puts "MetaInspector error"
+      puts 'Curation::Page metainspector error'
     end
   end
 end
