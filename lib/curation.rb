@@ -57,8 +57,6 @@ module Curation
 
     def find_title
       if json_ld.any?
-        # Some sites have tables in tables
-        json_ld.flatten!
         json_ld.each do |ld|
           return ld['headline'] if ld.has_key? 'headline'
         end
@@ -116,6 +114,8 @@ module Curation
             hash = JSON.parse(string)
             @json_ld << hash
           end
+          # Some sites have tables in tables
+          @json_ld.flatten!
         rescue
           puts 'Curation::Page json_ld error'
         end
