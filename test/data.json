@@ -12,5 +12,54 @@
     "text_extract": "Amid the economic and social fallout of the COVID-19 pandemic",
     "image": "https://images.theconversation.com/files/334817/original/file-20200513-156651-13qpfmc.jpeg?ixlib=rb-1.1.0&rect=0%2C180%2C1024%2C512&q=45&auto=format&w=1356&h=668&fit=crop",
     "date": "2020-05-15"
+  },
+  {
+    "url": "http://www.bbc.com/travel/story/20200715-freiburg-germanys-futuristic-city-set-in-a-forest",
+    "title": "Freiburg: Germany’s futuristic city set in a forest",
+    "text_extract": "“900 years young” reads the bold slogan emblazoned on the side of the tram as it rattles through Freiburg",
+    "image": "https://ychef.files.bbci.co.uk/624x351/p08jhh0x.jpg",
+    "date": "2020-07-16"
+  },
+  {
+    "url": "https://www.nytimes.com/2020/07/21/travel/crowded-flights-coronavirus.html",
+    "title": "Worried About Crowded Flights? Know Where Your Airline Stands",
+    "text_extract": "In the latter camp, United Airlines never instituted limits and continues to sell all available seats as demand allows.",
+    "image": "https://static01.nyt.com/images/2020/07/20/travel/oakImage-1595262749161/oakImage-1595262749161-videoSixteenByNineJumbo1600.jpg",
+    "date": "2020-07-21"
+  },
+  {
+    "url": "https://ensia.com/features/zoonoses-us-animal-disease-pandemic/",
+    "title": "Heads up, America: Animal-borne diseases are closer than you think.",
+    "text_extract": "Wild and domestic animals have bestowed on humans up to 75% of our infectious diseases",
+    "image": "https://ensia.com/wp-content/uploads/2020/07/Feature_USZoonses_main.jpg",
+    "date": "2020-07-10"
+  },
+  {
+    "url": "https://www.theguardian.com/environment/2020/jul/08/planting-trees-assisted-migration-climate-change",
+    "title": "'Playing the hand of God': scientists' experiment aims to help trees survive climate change",
+    "text_extract": "But a newcomer to the preserve has fueled an ethical debate about the role of conservationists in the age of climate change",
+    "image": "https://i.guim.co.uk/img/media/ca6cdcb26abc89f5981ff33dcf404f97d82139b0/139_0_4160_2496/master/4160.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=b885a68c99dbbc0b5f0ca0d6af01e0be",
+    "date": "2020-07-08"
+  },
+  {
+    "url": "https://resource.co/article/1800-tonnes-illegal-toxic-waste-found-abandoned-malaysian-port",
+    "title": "1,800 tonnes of illegal toxic waste found abandoned in Malaysian port",
+    "text_extract": "110 containers of toxic electric arc furnace dust (EAFD) were found abandoned at Malaysia’s Port of Tanjung Pelepas (PTP) last month",
+    "image": "https://resource.co/sites/default/files/article_teaser_image/Shipping%20containers%20at%20Malaysia%27s%20Port%20Klang_0.jpeg",
+    "date": "2020-07-23"
+  },
+  {
+    "url": "https://www.cbc.ca/news/technology/what-on-earth-newsletter-green-hydrogen-power-1.5570022",
+    "title": "There's a lot of buzz about 'green' hydrogen, but actual projects are slow in coming",
+    "text_extract": "The idea of hydrogen as a green fuel source has been whispered about for decades, but the conversation is getting louder",
+    "image": "https://i.cbc.ca/1.4865457.1540993844!/fileImage/httpImage/what-on-earth-logo.jpg",
+    "date": "2020-05-15"
+  },
+  {
+    "url": "https://www.courrierinternational.com/article/vu-dallemagne-quitter-paris-une-tendance-de-fond",
+    "title": "Vu d'Allemagne. Quitter Paris, une tendance de fond",
+    "text_extract": "On le croyait passager, mais l’exode urbain se poursuit.",
+    "image": "https://www.courrierinternational.com/sites/ci_master/files/styles/image_940/public/illustrations/thumbnails/2437-200522-nature-hajjaj.jpg?itok=1Mb7c9Qa",
+    "date": "2020-07-22"
   }
 ]

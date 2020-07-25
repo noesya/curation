@@ -25,32 +25,23 @@ module Curation
     end
 
     def title
-      @title = find_title
+      @title ||= find_title
     end
 
     def image
-      @image = find_image
-      @image = @image.to_s.gsub('http://', 'https://')
+      unless @image
+        @image = find_image
+        @image = @image.to_s.gsub('http://', 'https://')
+      end
       @image
     end
 
     def text
-      if json_ld.any?
-        json_ld.each do |ld|
-          next unless ld['@type'] == 'NewsArticle'
-          return ld['text'] if ld.has_key? 'text'
-          return ld['articleBody'] if ld.has_key? 'articleBody'
-        end
-      end
-      h = nokogiri.dup
-      BLACKLIST.each do |tag|
-        h.css(tag).remove
-      end
-      nodes = h.css('p')
-      nodes.xpath('//style').remove
-      text = nodes.to_html
-      text.gsub!('<br><br>', '<br>')
-      text
+      @text ||= find_text
+    end
+
+    def date
+      @date ||= find_date
     end
 
     protected
@@ -104,6 +95,61 @@ module Curation
       return ''
     end
 
+    def find_text
+      if json_ld.any?
+        json_ld.each do |ld|
+          next unless ['NewsArticle', 'ReportageNewsArticle'].include? ld['@type']
+          return ld['text'] if ld.has_key? 'text'
+          return ld['articleBody'] if ld.has_key? 'articleBody'
+        end
+      end
+      h = nokogiri.dup
+      BLACKLIST.each do |tag|
+        h.css(tag).remove
+      end
+      nodes = h.css('p')
+      nodes.xpath('//style').remove
+      text = nodes.to_html
+      text.gsub!('<br><br>', '<br>')
+      text
+    end
+
+    def find_date
+      if json_ld.any?
+        json_ld.each do |ld|
+          next unless ['NewsArticle', 'ReportageNewsArticle'].include? ld['@type']
+          return Date.parse ld['datePublished'] if ld.has_key? 'datePublished'
+        end
+      end
+      return Date.parse metatags['date'] rescue nil
+      return Date.parse metatags['pubdate'] rescue nil
+      return Date.parse nokogiri.css('meta[property="article:published"]').first['content'] rescue nil
+      return Date.parse nokogiri.css('meta[property="article:published_time"]').first['content'] rescue nil
+      chunks = html.split('DisplayDate')
+      if chunks.count > 1
+        value = chunks[1]
+        value = value.split(',').first
+        value = value.gsub('"', '')
+        value = value[1..-1] if value[0] == ':'
+        return Date.parse value rescue nil
+      end
+      begin
+        value = nokogiri.css('.postDate').first
+        value = value.inner_text
+        value = value.gsub(' — ', '')
+        return Date.parse value
+      rescue
+      end
+      begin
+        value = nokogiri.css('.gta_post_date').first
+        value = value.inner_text
+        return Date.parse value
+      rescue
+      end
+    end
+
+    private
+
     def json_ld
       unless defined?(@json_ld)
         @json_ld = []
@@ -123,22 +169,48 @@ module Curation
       @json_ld
     end
 
-    def html
-      @html ||= URI.open url
+    def file
+      @file ||= URI.open url, 'User-Agent' => "Mozilla/5.0"
     rescue
-      puts "Curation::Page impossible to open #{url}"
+      puts "Curation::Page file error with url #{url}"
+    end
+
+    def html
+      unless @html
+        file.rewind
+        @html = file.read
+        file.rewind
+      end
+      @html
+    rescue
+      puts "Curation::Page html error"
     end
 
     def nokogiri
-      @nokogiri ||= Nokogiri::HTML html
+      unless @nokogiri
+        file.rewind
+        @nokogiri = Nokogiri::HTML file
+        file.rewind
+      end
+      @nokogiri
     rescue
       puts 'Curation::Page nokogiri error'
     end
 
     def metainspector
-      @metainspector ||= MetaInspector.new url, document: html
+      unless @metainspector
+        @metainspector = html.nil?  ? MetaInspector.new(url)
+                                    : MetaInspector.new(url, document: html)
+      end
+      @metainspector
     rescue
       puts 'Curation::Page metainspector error'
+    end
+
+    def metatags
+      @metatags ||= metainspector.meta_tag['name']
+    rescue
+      puts 'Curation::Page metatags error'
     end
   end
 end

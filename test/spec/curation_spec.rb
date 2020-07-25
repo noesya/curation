@@ -27,4 +27,11 @@ class TestCuration < Minitest::Test
       assert page['curation'].text.include? page['text_extract']
     end
   end
+
+  def test_dates_are_extracted
+    @data.each do |page|
+      date = Date.parse page['date']
+      assert_equal page['curation'].date, date
+    end
+  end
 end
