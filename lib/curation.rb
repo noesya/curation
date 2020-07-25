@@ -6,7 +6,7 @@ module Curation
   class Error < StandardError; end
 
   class Page
-    attr_reader :url, :title, :text, :image
+    attr_reader :url
 
     BLACKLIST = [
       'head', 'script', 'style', 'iframe', 'nav', 'noscript', 'header', 'footer', 'aside',
@@ -70,7 +70,7 @@ module Curation
           nokogiri.css('[itemprop="headline"]')&.first&.inner_text,
           nokogiri.css('title')&.first&.inner_text
         ].each do |possibility|
-          return possibility unless possibility.blank?
+          return possibility unless possibility.to_s.empty?
         end
       rescue
         puts 'Curation::Page find_title error'
@@ -98,7 +98,7 @@ module Curation
           metainspector.images.best,
           nokogiri.css('[property="og:image"]').first&.attributes['content'].value
         ].each do |possibility|
-            return possibility unless possibility.blank?
+          return possibility unless possibility.to_s.empty?
         end
       rescue
         puts 'Curation::Page find_image error'
@@ -107,7 +107,7 @@ module Curation
     end
 
     def json_ld
-      unless @json_ld
+      unless defined?(@json_ld)
         @json_ld = []
         begin
           options = nokogiri.css('[type="application/ld+json"]')
@@ -126,7 +126,7 @@ module Curation
     def html
       @html ||= URI.open url
     rescue
-      puts "Impossible to open #{url}"
+      puts "Curation::Page impossible to open #{url}"
     end
 
     def nokogiri
