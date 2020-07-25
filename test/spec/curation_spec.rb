@@ -1,5 +1,5 @@
 require "test_helper"
-require 'byebug'
+
 class TestCuration < Minitest::Test
   def setup
     file = File.open 'test/data.json'
@@ -12,13 +12,19 @@ class TestCuration < Minitest::Test
 
   def test_titles_are_extracted
     @data.each do |page|
-      assert_equal page['curation'].title, page['title']
+      assert_equal page['title'], page['curation'].title
     end
   end
 
   def test_images_are_extracted
     @data.each do |page|
-      assert_equal page['curation'].image, page['image']
+      assert_equal page['image'], page['curation'].image
+    end
+  end
+
+  def test_texts_are_more_or_less_extracted
+    @data.each do |page|
+      assert page['curation'].text.include? page['text_extract']
     end
   end
 end
