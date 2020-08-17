@@ -156,6 +156,7 @@ module Curation
         begin
           options = nokogiri.css('[type="application/ld+json"]')
           options.each do |option|
+            # require 'byebug'; byebug
             string = option.inner_text
             hash = JSON.parse(string)
             @json_ld << hash
