@@ -20,7 +20,7 @@ module Curation
     ]
 
     def initialize(url, html = nil)
-      @url = url
+      @url = url.to_s.gsub('http://', 'https://')
       @html = html
     end
 
@@ -189,9 +189,13 @@ module Curation
 
     def nokogiri
       unless @nokogiri
-        file.rewind
-        @nokogiri = Nokogiri::HTML file
-        file.rewind
+        if file.nil?
+          @nokogiri = metainspector.parsed
+        else
+          file.rewind
+          @nokogiri = Nokogiri::HTML file
+          file.rewind
+        end
       end
       @nokogiri
     rescue
