@@ -16,14 +16,13 @@
   {
     "url": "http://www.bbc.com/travel/story/20200715-freiburg-germanys-futuristic-city-set-in-a-forest",
     "title": "Freiburg: Germany’s futuristic city set in a forest",
-    "text_extract": "“900 years young” reads the bold slogan emblazoned on the side of the tram as it rattles through Freiburg",
-    "image": "https://ychef.files.bbci.co.uk/624x351/p08jhh0x.jpg",
-    "date": "2020-07-16"
+    "text_extract": "reads the bold slogan emblazoned on the side of the tram as it rattles through Freiburg",
+    "image": "https://ychef.files.bbci.co.uk/live/624x351/p08jhh0x.jpg"
   },
   {
     "url": "https://www.nytimes.com/2020/07/21/travel/crowded-flights-coronavirus.html",
     "title": "Worried About Crowded Flights? Know Where Your Airline Stands",
-    "text_extract": "In the latter camp, United Airlines never instituted limits and continues to sell all available seats as demand allows.",
+    "text_extract": "those blocking strategic seats to offer more space, and those willing to fill planes to capacity",
     "image": "https://static01.nyt.com/images/2020/07/20/travel/oakImage-1595262749161/oakImage-1595262749161-videoSixteenByNineJumbo1600.jpg",
     "date": "2020-07-21"
   },
@@ -58,15 +57,21 @@
   {
     "url": "https://www.courrierinternational.com/article/vu-dallemagne-quitter-paris-une-tendance-de-fond",
     "title": "Vu d'Allemagne. Quitter Paris, une tendance de fond",
-    "text_extract": "On le croyait passager, mais l’exode urbain se poursuit.",
-    "image": "https://www.courrierinternational.com/sites/ci_master/files/styles/image_940/public/illustrations/thumbnails/2437-200522-nature-hajjaj.jpg?itok=1Mb7c9Qa",
+    "text_extract": "Ce rendez-vous pourrait sans problème être une scène de carte postale",
+    "image": "https://focus.courrierinternational.com/2022/02/04/0/0/2400/1600/1200/630/60/0/8cc2ef1_1644008957674-2437-200522-nature-hajjaj.jpg",
     "date": "2020-07-22"
   },
   {
     "url": "https://www.heidi.news/geneva-solutions/et-si-l-on-interdisait-la-publicite-pour-les-4x4-comme-pour-le-tabac",
     "title": "Et si l'on interdisait la publicité pour les 4x4, comme pour le tabac?",
     "text_extract": "pour la santé publique et un facteur critique de l'augmentation des émissions climatiques",
-    "image": "https://heidi-f385.kxcdn.com/photos/3e0cc47a-d5bd-4e30-a5ff-734eb0e4cd4a/large",
+    "image": "https://heidi-17455.kxcdn.com/photos/3e0cc47a-d5bd-4e30-a5ff-734eb0e4cd4a/large",
     "date": "2020-08-11"
+  },
+  {
+    "url": "https://www.fun-mooc.fr/fr/cours/sinitier-a-lenseignement-en-sciences-numeriques-et-technologie/",
+    "title": "S'initier à l'enseignement en Sciences Numériques et Technologie",
+    "text_extract": "Dans le cadre de la réforme du lycée",
+    "image": "https://dz03nossv7tsm.cloudfront.net/media/filer_public_thumbnails/filer_public/d8/7d/d87dc5d7-f231-4d62-8338-6ce1f3c7185c/course-v1inria41018session01600x315_q85_crop-smart.jpg__1200x630_q85_crop_replace_alpha-%23FFFFFF_subsampling-2_upscale.jpg"
   }
 ]

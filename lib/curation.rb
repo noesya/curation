@@ -1,6 +1,7 @@
 require "curation/version"
 require "metainspector"
 require "open-uri"
+require "htmlentities"
 
 module Curation
   class Error < StandardError; end
@@ -37,6 +38,7 @@ module Curation
     end
 
     def text
+      # require 'byebug'; byebug
       @text ||= find_text
     end
 
@@ -49,6 +51,8 @@ module Curation
     def find_title
       if json_ld.any?
         json_ld.each do |ld|
+          # require 'byebug'; byebug
+          ld = ld.first if ld.is_a?(Array)
           return ld['headline'] if ld.has_key? 'headline'
         end
       end
@@ -70,6 +74,7 @@ module Curation
     def find_image
       if json_ld.any?
         json_ld.each do |ld|
+          ld = ld.first if ld.is_a?(Array)
           if ld.has_key? 'image'
             image_data = ld['image']
             return image_data if image_data.is_a? String
@@ -96,6 +101,14 @@ module Curation
     end
 
     def find_text
+      text = find_text_with_json_ld || find_text_with_nokogiri
+      text.to_s.gsub!('<br><br>', '<br>')
+      # require 'byebug'; byebug
+      text = clean_encoding text
+      text
+    end
+
+    def find_text_with_json_ld
       if json_ld.any?
         json_ld.each do |ld|
           next unless ['NewsArticle', 'ReportageNewsArticle'].include? ld['@type']
@@ -103,6 +116,10 @@ module Curation
           return ld['articleBody'] if ld.has_key? 'articleBody'
         end
       end
+      nil
+    end
+
+    def find_text_with_nokogiri
       h = nokogiri.dup
       BLACKLIST.each do |tag|
         h.css(tag).remove
@@ -110,7 +127,6 @@ module Curation
       nodes = h.css('p')
       nodes.xpath('//style').remove
       text = nodes.to_html
-      text.gsub!('<br><br>', '<br>')
       text
     end
 
@@ -125,6 +141,7 @@ module Curation
       return Date.parse metatags['pubdate'] rescue nil
       return Date.parse nokogiri.css('meta[property="article:published"]').first['content'] rescue nil
       return Date.parse nokogiri.css('meta[property="article:published_time"]').first['content'] rescue nil
+      return Date.parse nokogiri.css('meta[property="og:article:published_time"]').first['content'] rescue nil
       chunks = html.split('DisplayDate')
       if chunks.count > 1
         value = chunks[1]
@@ -156,18 +173,22 @@ module Curation
         begin
           options = nokogiri.css('[type="application/ld+json"]')
           options.each do |option|
-            # require 'byebug'; byebug
-            string = option.inner_text
-            hash = JSON.parse(string)
-            @json_ld << hash
+            @json_ld << json_ld_from_object(option)
           end
           # Some sites have tables in tables
           @json_ld.flatten!
+          # require 'byebug'; byebug
         rescue
           puts 'Curation::Page json_ld error'
         end
       end
       @json_ld
+    end
+
+    def json_ld_from_object(object)
+      JSON.parse object.inner_text
+    rescue
+      {}
     end
 
     def file
@@ -216,6 +237,27 @@ module Curation
       @metatags ||= metainspector.meta_tag['name']
     rescue
       puts 'Curation::Page metatags error'
+    end
+
+    # r&Atilde;&copy;forme -> réforme
+    def clean_encoding(text)
+      clean_text = HTMLEntities.new.decode text
+      double_encoding = false
+      [
+        'Ã©', # é
+        'Ã¨', # è
+        'Ã®', # î
+        'Ãª', # ê
+      ].each do |string|
+        # require 'byebug'; byebug
+        double_encoding = true if clean_text.include? string
+      end
+      if double_encoding
+        clean_text.encode('iso-8859-1', undef: :replace)
+                  .force_encoding('utf-8')
+      else
+        text
+      end
     end
   end
 end
