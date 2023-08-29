@@ -8,6 +8,7 @@ module Curation
 
   class Page
     attr_reader :url
+    attr_accessor :verbose
 
     BLACKLIST = [
       'head', 'script', 'style', 'iframe', 'nav', 'noscript', 'header', 'footer', 'aside',
@@ -23,6 +24,7 @@ module Curation
     def initialize(url, html = nil)
       @url = url.to_s.gsub('http://', 'https://')
       @html = html
+      @verbose = false
     end
 
     def title
@@ -66,24 +68,37 @@ module Curation
           return possibility unless possibility.to_s.empty?
         end
       rescue
-        puts 'Curation::Page find_title error'
+        log 'Curation::Page find_title error'
       end
       return ''
     end
 
     def find_image
+      log "Curation::Page find_image #{url}"
       if json_ld.any?
         json_ld.each do |ld|
           ld = ld.first if ld.is_a?(Array)
           if ld.has_key? 'image'
             image_data = ld['image']
-            return image_data if image_data.is_a? String
+            if image_data.is_a? String
+              log "Curation::Page find_image json_ld string"
+              return image_data 
+            end
             if image_data.is_a? Array
               first = image_data.first
-              return first if first.is_a? String
-              return first['url'] if first.is_a? Hash
+              if first.is_a? String
+                log "Curation::Page find_image json_ld array"
+                return first 
+              end
+              if first.is_a? Hash
+                log "Curation::Page find_image json_ld array url"
+                return first['url'] 
+              end
             end
-            return image_data['url'] if image_data.is_a? Hash
+            if image_data.is_a? Hash
+              log "Curation::Page find_image json_ld url"
+              return image_data['url'] 
+            end
           end
         end
       end
@@ -179,7 +194,7 @@ module Curation
           @json_ld.flatten!
           # require 'byebug'; byebug
         rescue
-          puts 'Curation::Page json_ld error'
+          log 'Curation::Page json_ld error'
         end
       end
       @json_ld
@@ -194,7 +209,7 @@ module Curation
     def file
       @file ||= URI.open url, 'User-Agent' => "Mozilla/5.0"
     rescue
-      puts "Curation::Page file error with url #{url}"
+      log "Curation::Page file error with url #{url}"
     end
 
     def html
@@ -205,7 +220,7 @@ module Curation
       end
       @html
     rescue
-      puts "Curation::Page html error"
+      log "Curation::Page html error"
     end
 
     def nokogiri
@@ -220,7 +235,7 @@ module Curation
       end
       @nokogiri
     rescue
-      puts 'Curation::Page nokogiri error'
+      log 'Curation::Page nokogiri error'
     end
 
     def metainspector
@@ -230,13 +245,13 @@ module Curation
       end
       @metainspector
     rescue
-      puts 'Curation::Page metainspector error'
+      log 'Curation::Page metainspector error'
     end
 
     def metatags
       @metatags ||= metainspector.meta_tag['name']
     rescue
-      puts 'Curation::Page metatags error'
+      log 'Curation::Page metatags error'
     end
 
     # r&Atilde;&copy;forme -> réforme
@@ -258,6 +273,10 @@ module Curation
       else
         text
       end
+    end
+
+    def log(message)
+      puts message if verbose
     end
   end
 end

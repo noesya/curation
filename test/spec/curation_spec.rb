@@ -6,6 +6,7 @@ class TestCuration < Minitest::Test
     @data = JSON.load file
     @data.each do |page|
       page['curation'] = Curation::Page.new page['url']
+      page['curation'].verbose = true
     end
     file.close
   end

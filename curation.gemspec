@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.add_dependency "metainspector", '~> 5.12'
+  spec.add_dependency "metainspector"
   spec.add_dependency "nokogiri"
   spec.add_dependency "htmlentities"
 end
