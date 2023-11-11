@@ -21,7 +21,7 @@ module Title
         return ld['headline'] if ld.has_key? 'headline'
       end
     end
-    nil
+    false
   end
 
   def find_title_with_metainspector
@@ -39,6 +39,7 @@ module Title
     elsif metainspector_title.present?
       return metainspector_title
     end
+    false
   end
 
   def find_title_with_nokogiri

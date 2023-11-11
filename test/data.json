@@ -73,6 +73,13 @@
     "text_extract": "Cependant, depuis les années 1800, les activités humaines constituent",
     "image": "https://www.un.org/sites/un2.un.org/files/2021/04/climate-change-take-action.jpg",
     "date": false
+  },
+  {
+    "url": "https://www.notre-environnement.gouv.fr/themes/climat/article/comprendre-le-changement-climatique",
+    "title": "Comprendre le changement climatique - notre-environnement",
+    "text_extract": "vagues de chaleur plus fréquentes et plus intenses",
+    "image": "https://www.notre-environnement.gouv.fr/local/cache-vignettes/L486xH255/beb907d2fb448fb490c03b5ff5e4c9-78f90.png",
+    "date": "2023-11-11"
   }
   // Captcha sometimes
   // {

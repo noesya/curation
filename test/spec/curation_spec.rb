@@ -27,14 +27,13 @@ class TestCuration < Minitest::Test
   def test_texts_are_more_or_less_extracted
     @data.each do |page|
       # puts page['url']
-      # require 'byebug'; byebug
+      # puts page['curation'].text
       assert page['curation'].text.include? page['text_extract']
     end
   end
 
   def test_dates_are_extracted
     @data.each do |page|
-      # require 'byebug'; byebug
       if page['date']
         # puts page['url']
         # puts page['curation'].date
