@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    curation (1.11)
+    curation (2.0)
       htmlentities
       metainspector
       nokogiri

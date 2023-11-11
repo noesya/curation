@@ -11,7 +11,6 @@ module Text
     '[style*="display: none;"]', '[style*="display: none"]', '[aria-hidden="true"]'
   ]
 
-
   def text
     # require 'byebug'; byebug
     @text ||= find_text
@@ -40,13 +39,19 @@ module Text
 
   def find_text_with_nokogiri
     h = nokogiri.dup
+    h.xpath('//style').remove
     BLACKLIST.each do |tag|
       h.css(tag).remove
     end
     nodes = h.css('p')
-    nodes.xpath('//style').remove
-    text = nodes.to_html
-    text
+    if nodes.any? 
+      text = nodes.to_html
+      text
+    else
+      # Cleanup was too hard, let's try softer
+      h = nokogiri.dup
+      h.text
+    end
   end
 
   # r&Atilde;&copy;forme -> réforme

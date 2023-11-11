@@ -20,6 +20,7 @@ module Curation
     include Jsonld
     include Metainspector
     include Nokogiri
+
     # Finders
     include Title
     include Image

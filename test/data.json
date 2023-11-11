@@ -66,14 +66,14 @@
     "title": "S'initier à l'enseignement en Sciences Numériques et Technologie - Cours - FUN MOOC",
     "text_extract": "Dans le cadre de la réforme du lycée",
     "image": "https://dz03nossv7tsm.cloudfront.net/media/filer_public_thumbnails/filer_public/d8/7d/d87dc5d7-f231-4d62-8338-6ce1f3c7185c/course-v1inria41018session01600x315_q85_crop-smart.jpg__1200x630_q85_crop_replace_alpha-%23FFFFFF_subsampling-2_upscale.jpg"
+  },
+  {
+    "url": "https://www.un.org/fr/climatechange/what-is-climate-change",
+    "title": "En quoi consistent les changements climatiques ? | Nations Unies",
+    "text_extract": "Cependant, depuis les années 1800, les activités humaines constituent",
+    "image": "https://www.un.org/sites/un2.un.org/files/2021/04/climate-change-take-action.jpg",
+    "date": false
   }
-  // {
-  //   "url": "https://www.un.org/fr/climatechange/what-is-climate-change",
-  //   "title": "En quoi consistent les changements climatiques ? | Nations Unies",
-  //   "text_extract": "Cependant, depuis les années 1800, les activités humaines constituent",
-  //   "image": "https://www.un.org/sites/un2.un.org/files/2021/04/climate-change-take-action.jpg",
-  //   "date": false
-  // }
   // Captcha sometimes
   // {
   //   "url": "https://www.nytimes.com/2020/07/21/travel/crowded-flights-coronavirus.html",
