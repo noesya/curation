@@ -8,12 +8,12 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Curation of content'
   spec.description   = %q{When you build content curation tools, you need to extract the content of pages (title, text, image...). This requires different strategies and some fine tuning to work efficiently.}
-  spec.homepage      = "https://github.com/arnaudlevy/curation"
+  spec.homepage      = "https://github.com/noesya/curation"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/arnaudlevy/curation"
+  spec.metadata["source_code_uri"] = "https://github.com/noesya/curation"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
