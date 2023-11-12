@@ -83,6 +83,13 @@
   }
   // Captcha sometimes
   // {
+  //   "url": "https://www.cairn.info/revue-mouvements-2010-3-page-130.htm",
+  //   "title": "Villes en transition : imaginer des relocalisations en urgence",
+  //   "text_extract": "il fut aussi l’occasion d’une importante mobilisation militante, dont la composition et les revendications témoignent",
+  //   "image": "https://www.cairn.info/vign_rev/MOUV/MOUV_063.jpg",
+  //   "date": "2010-09-21"
+  // }
+  // {
   //   "url": "https://www.nytimes.com/2020/07/21/travel/crowded-flights-coronavirus.html",
   //   "title": "Worried About Crowded Flights? Know Where Your Airline Stands",
   //   "text_extract": "those blocking strategic seats to offer more space, and those willing to fill planes to capacity",
