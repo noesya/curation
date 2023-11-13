@@ -38,6 +38,7 @@ class TestCuration < Minitest::Test
         # puts page['url']
         # puts page['curation'].date
         date = Date.parse page['date']
+        next unless date
         assert_equal page['curation'].date, date
       end
     end

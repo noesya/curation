@@ -5,6 +5,7 @@ PATH
       htmlentities
       metainspector
       nokogiri
+      rails-html-sanitizer
 
 GEM
   remote: https://rubygems.org/
@@ -15,6 +16,7 @@ GEM
     base64 (0.2.0)
     builder (3.2.4)
     byebug (11.1.3)
+    crass (1.0.6)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     faraday (2.7.11)
@@ -40,6 +42,9 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    loofah (2.21.4)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
     metainspector (5.15.0)
       addressable (~> 2.8.4)
       faraday (~> 2.5)
@@ -63,6 +68,9 @@ GEM
       racc (~> 1.4)
     public_suffix (5.0.3)
     racc (1.7.3)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
     rake (12.3.3)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)

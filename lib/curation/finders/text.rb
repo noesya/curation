@@ -26,8 +26,8 @@ module Text
     text = text.gsub('<br><br>', '<br>')
     text = text.gsub(/\s+/, ' ')
     text = clean_encoding(text)
+    text = Rails::HTML5::FullSanitizer.new.sanitize(text)
     text
-
   end
 
   def find_text

@@ -10,6 +10,7 @@ require "curation/finders/title"
 require "metainspector"
 require "open-uri"
 require "htmlentities"
+require "rails-html-sanitizer"
 
 module Curation
   class Error < StandardError; end

@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "metainspector"
   spec.add_dependency "nokogiri"
   spec.add_dependency "htmlentities"
+  spec.add_dependency "rails-html-sanitizer"
 end

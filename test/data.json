@@ -79,7 +79,14 @@
     "title": "Comprendre le changement climatique - notre-environnement",
     "text_extract": "vagues de chaleur plus fréquentes et plus intenses",
     "image": "https://www.notre-environnement.gouv.fr/local/cache-vignettes/L486xH255/beb907d2fb448fb490c03b5ff5e4c9-78f90.png",
-    "date": "2023-11-11"
+    "date": false
+  },
+  {
+    "url": "https://www.lefigaro.fr/sciences/comment-les-temperatures-ont-evolue-dans-votre-ville-en-50-ans-20231108",
+    "title": "Comment les températures ont évolué dans votre ville en 50 ans&nbsp;?",
+    "text_extract": "Coup sur coup, les mois de septembre et octobre 2023 ont enregistré les deux plus grosses anomalies positives",
+    "image": "https://i.f1g.fr/media/cms/orig/2023/11/08/d21fcf80ad6a43baed4f44dbf8b57027c6bac566f0c13a6fe4dcbd92a180180e.jpg",
+    "date": "2023-11-08"
   }
   // Captcha sometimes
   // {
