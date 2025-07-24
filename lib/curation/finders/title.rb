@@ -9,7 +9,7 @@ module Title
   def find_title
     find_title_with_json_ld ||
     find_title_with_metainspector ||
-    find_title_with_nokogiri ||
+    find_title_with_nokogiri ||
     ''
   end
 
@@ -29,11 +29,11 @@ module Title
     metainspector_title = metainspector.title
     # Problème avec une balise <meta property="title" content="Run 0"  />,
     # metainspector croit que c'est le titre de la page.
-    # Comme le title contient le best title, avec souvent des infos en plus sur le site, 
+    # Comme le title contient le best title, avec souvent des infos en plus sur le site,
     # on vérifie si le best title est bien contenu dans le title
-    if  metainspector_title.present? && 
+    if  metainspector_title.present? &&
         metainspector_title.present? &&
-        metainspector_best_title.present? && 
+        metainspector_best_title.present? &&
         metainspector_title.include?(metainspector_best_title)
       return metainspector_best_title
     elsif metainspector_title.present?
