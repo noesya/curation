@@ -10,8 +10,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.5)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.9.0)
+      public_suffix (>= 2.0.2, < 8.0)
     ansi (1.5.0)
     base64 (0.2.0)
     builder (3.2.4)
@@ -45,14 +45,14 @@ GEM
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    metainspector (5.15.0)
-      addressable (~> 2.8.4)
+    metainspector (5.14.0)
+      addressable (~> 2.8)
       faraday (~> 2.5)
       faraday-cookie_jar (~> 0.0)
       faraday-encoding (~> 0.0)
       faraday-follow_redirects (~> 0.3)
       faraday-gzip (>= 0.1, < 2.0)
-      faraday-http-cache (~> 2.5)
+      faraday-http-cache (~> 2.4)
       faraday-retry (~> 2.0)
       fastimage (~> 2.2)
       nesty (~> 1.0)
@@ -68,7 +68,7 @@ GEM
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    public_suffix (5.0.3)
+    public_suffix (4.0.7)
     racc (1.7.3)
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
@@ -85,6 +85,7 @@ PLATFORMS
   arm64-darwin-24
   x86_64-darwin-21
   x86_64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   byebug
